@@ -1,5 +1,9 @@
 snsr_tree
 
+a tree with all the sensors you need to stay healthy!!
+
+Zine here
+
 **inspiration for this project**
 - i have always wanted some sensors for my room, however they are expensive and they involve constantly checking the readings
 - so i thought it wold be call to make my own, where all these sensors are merged into one, and actually tell me to do something if certain levels are too high!!
@@ -12,3 +16,17 @@ snsr_tree
 - then assemble the case (using screws)
 - plug into a computer and flash the firmware (in this repository) to the xiao-esp32-c6 (easiest way to do this is via the arduino ide)
 - then use the project! and listen out for warnings!
+
+**screenshots**
+the 3d case:
+<img width="667" height="762" alt="image" src="https://github.com/user-attachments/assets/24e080fa-c080-4c38-832d-13755325945b" />
+the schematic:
+<img width="1052" height="667" alt="image" src="https://github.com/user-attachments/assets/5284efcd-0a71-4794-8b01-a1a6073c6a65" />
+
+the pcb wiring:
+<img width="601" height="740" alt="image" src="https://github.com/user-attachments/assets/7ef5630e-a425-48f4-87bc-6029e61dfcf2" />
+
+
+Features:
+- Wifi Communication for RTC
+- Communication via the I2C protocol
