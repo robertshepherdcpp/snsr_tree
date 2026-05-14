@@ -2,7 +2,8 @@ snsr_tree
 
 a tree with all the sensors you need to stay healthy!!
 
-Zine here
+<img width="469" height="661" alt="image" src="https://github.com/user-attachments/assets/11c7b84f-e4e5-4819-bd54-8521ee9d7d97" />
+
 
 **inspiration for this project**
 - i have always wanted some sensors for my room, however they are expensive and they involve constantly checking the readings
