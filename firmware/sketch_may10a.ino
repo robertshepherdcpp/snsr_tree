@@ -1,11 +1,9 @@
-#include <ArduinoSound.h>
 #include <Wire.h>
 #include <Audio.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <Arduino.h>
 #include <SensirionI2cScd4x.h>
-#include <SD_MCC.h>
 #include <SD.h>
 #include <Adafruit_MCP23X17.h>
 
@@ -72,7 +70,7 @@ String timeStamp;
 #define LED3 1
 #define LED4 27
 
-Adafruit_MCP23X08 mcp;
+Adafruit_MCP23X17 mcp;
 
 // i2c addresses
 #define SCD40 0x62
@@ -102,6 +100,8 @@ SensirionI2cScd4x sensor;
 
 static int16_t error;
 
+bool nightTime = false;
+
 /*
 VALUES SORTED:
 
@@ -129,10 +129,11 @@ auto read_values() {
   int splitT = formattedDate.indexOf("T");
   timeStamp = formattedDate.substring(splitT + 1, splitT + 3);
   int hour = timeStamp.toInt();
-  if (hour <= 7 && hour >= 22) {
-    dayTime = true;
+
+  if (hour <= 7 || hour >= 22) {
+    nightTime = true;
   } else {
-    dayTime = false;
+    nightTime = false;
   }
 
   // reading from the co2 sensor
@@ -140,41 +141,42 @@ auto read_values() {
   uint16_t co2Concentration = 0;  // in ppm
   float temp = 0.0;               // in degrees
   float relativeHumidity = 0.0;   // percentage
+
   delay(5000);
+
   error = sensor.getDataReadyStatus(dataReady);
   if (error != NO_ERROR) {
     return;
   }
+
   while (!dataReady) {
     delay(100);
     error = sensor.getDataReadyStatus(dataReady);
     if (error != NO_ERROR)
       return;
   }
-}
 
-error = sensor.readMeasurement(co2Concentration, temp, relativeHumidity);
-if (error != NO_ERROR) {
-  return;
-}
+  error = sensor.readMeasurement(co2Concentration, temp, relativeHumidity);
+  if (error != NO_ERROR) {
+    return;
+  }
 
-humidity_percentage = relativeHumidity;
-co2_levels = co2Concentration;
-temperature = temp;
+  humidity_percentage = relativeHumidity;
+  co2_levels = co2Concentration;
+  temperature = temp;
 
-// read light intensity
-int ldrValue = 0;
-ldrValue = mcp.analogRead(LDR_B);  // well say that the threshhold is 600 and if it is less than that we will put the lights on.
-light_level = ldrValue;
+  // read light intensity
+  int ldrValue = 0;
+  ldrValue = mcp.analogRead(LDR_B);  // well say that the threshhold is 600 and if it is less than that we will put the lights on.
+  light_level = ldrValue;
 
-
-// read the sound input:
-if (amplitudeAnalyzer.available()) {
-  // read the new amplitude
-  int amplitude = amplitudeAnalyzer.read();
-  // then turn it into decibels
-  int decibels = 20 * log10(abs(amplitude));  // greater than 80, we tell user to put it down.
-}
+  // read the sound input:
+  if (amplitudeAnalyzer.available()) {
+    // read the new amplitude
+    int amplitude = amplitudeAnalyzer.read();
+    // then turn it into decibels
+    int decibels = 20 * log10(abs(amplitude));  // greater than 80, we tell user to put it down.
+  }
 }
 
 bool lightsOn = false;
@@ -186,7 +188,6 @@ auto handle_values() {
   // handling the humidifier
   if (humidity_percentage < 40) {
     // audio saying: "its a bit dry in here, but your humidifier on!"
-    played = false;
     if (!played) {
       audio.connecttoFS(SD, "/humidity_up.mp3");
       played = true;
@@ -194,7 +195,6 @@ auto handle_values() {
     delay(3000);
   } else if (humidity_percentage > 60) {
     // audio saying: "its a bit humid in here! maybe put your dehumidifier on!"
-    played = false;
     if (!played) {
       audio.connecttoFS(SD, "/humidity_down.mp3");
       played = true;
@@ -205,16 +205,15 @@ auto handle_values() {
   // handling temperature
   if (temperature < 19) {
     // audio saying, put the temperature up!
-    played = false;
     if (!played) {
       audio.connecttoFS(SD, "/temp_up.mp3");
       played = true;
     }
     delay(3000);
   }
+
   if (temperature > 23) {
     // audio saying: its a bit warm in here, try cooling down!
-    played = false;
     if (!played) {
       audio.connecttoFS(SD, "/temp_down.mp3");
       played = true;
@@ -242,7 +241,6 @@ auto handle_values() {
   // handling the co2
   if (co2_levels > 5000) {
     // audio saying: "co2 levels too high, open your windows!"
-    played = false;
     if (!played) {
       audio.connecttoFS(SD, "/co2_lower.mp3");
       played = true;
@@ -250,37 +248,38 @@ auto handle_values() {
     delay(3000);
   }
 
-  if (light_levels < 600 && !nightTime) {
+  if (light_level < 600 && !nightTime) {
     // put on LED lights.
     lightsOn = true;
     mcp.digitalWrite(LED1, HIGH);
     mcp.digitalWrite(LED2, HIGH);
     mcp.digitalWrite(LED3, HIGH);
     mcp.digitalWrite(LED4, HIGH);
-  } else if (light_levels >= 600 && lightsOn) {
+  } else if (light_level >= 600 && lightsOn) {
     mcp.digitalWrite(LED1, LOW);
     mcp.digitalWrite(LED2, LOW);
     mcp.digitalWrite(LED3, LOW);
     mcp.digitalWrite(LED4, LOW);
+  } else {
+    played = false;
   }
 }
 
 // MICROPHONE STUFF
 
-I2SSampler *i2s_sampler = NULL;
-
 uint8_t *audio_buffer = NULL;
-int buffersize_bytes = NULL;
-
-
+int buffersize_bytes = 0;
 
 void i2sWriterTask(void *param) {
   const TickType_t xMaxBlockTime = pdMS_TO_TICKS(100);
+
   while (true) {
     uint32_t ulNotificationValue = ulTaskNotifyTake(pdTRUE, xMaxBlockTime);
+
     if (ulNotificationValue > 0) {
-      audio_buffer = (uint8_t *)sampler->getCapturedAudioBuffer()
-                       buffersize_bytes = sampler->getBufferSizeInBytes();
+      audio_buffer = (uint8_t *)sampler->getCapturedAudioBuffer();
+      buffersize_bytes = sampler->getBufferSizeInBytes();
+
       float x_Pascal = (float)raw_sample / (float)(1 << 23) * 20.0f;  // Convert RMS in Pascals to dBSPL
       float Lz = 20.0 * log10(rms / (20e-6));                         // sound in decibels
       decibels = Lz;
@@ -299,18 +298,18 @@ void i2sWriterTask(void *param) {
 
 bool played = false;
 
-
 void setup() {
   // sorting out the microphone:
   // i2s_sampler = new I2SSampler();
   // i2s_sampler->start(I2S_NUM_1, i2s_pins, i2s_config, 32768, writer_task_handle);
+
   Serial.begin(115200);
 
   // sorting out loading sounds from the sd card and playing them on the speaker.
   SPI.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
 
   if (!SD.begin(SD_CS)) {
-    return;  // Halt setup sequence
+    return;
   }
 
   audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
@@ -324,12 +323,15 @@ void setup() {
 
   // for the wifi:
   WiFi.begin(ssid, password);
+
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
+
   timeClient.begin();
   timeClient.setTimeOffset(0);  // GMT time (here in Britain, change for if ur in a different location.)
+
   // setting up the LEDS
   mcp.pinMode(LED1, OUTPUT);
   mcp.pinMode(LED2, OUTPUT);
@@ -338,7 +340,6 @@ void setup() {
 
   // setting up the i2c channel
   Wire.begin();
-  wire.begin(SCD40);  // setting up the co2 sensor as a slave.
   Serial.begin(115200);
   sensor.begin(Wire, SCD40_I2C_ADDR_62);
 
@@ -346,43 +347,46 @@ void setup() {
   if (!AudioInI2S.begin(44100, 32)) {
     Serial.println("Failed to initialize I2S input!");
     while (1)
-      ;  // do nothing
+      ;
   }
 
   if (!amplitudeAnalyzer.input(AudioInI2S)) {
     Serial.println("Failed to set amplitude analyzer input!");
     while (1)
       ;
-
-    if (!SD.begin(SD_card_select)) {
-      Serial.println("cant connect to the SD card....");
-      return 0;
-    }
-
-    // Initialize file system
-    SPIFFS.begin();
-
-    // Create audio components
-    file = new AudioFileSourceSD("/music.mp3");
-    out = new AudioOutputI2S();
-    out.setPinout(24);
-    mp3 = new AudioGeneratorMP3();
-
-    out->SetGain(0.16);  // setting the volume.
-
-    // Start playback
-    mp3->begin(file, out);
   }
 
-  void loop() {
-    read_values();
-    handle_values();
-
-    // Keep calling loop while playing
-    if (mp3->isRunning()) {
-      if (!mp3->loop()) mp3->stop();
-    } else {
-      // Playback has stopped
-    }
-    audio.loop();
+  if (!SD.begin(SD_card_select)) {
+    Serial.println("cant connect to the SD card....");
+    return;
   }
+
+  // Initialize file system
+  SPIFFS.begin();
+
+  // Create audio components
+  file = new AudioFileSourceSD("/music.mp3");
+  out = new AudioOutputI2S();
+  out->setPinout(24);
+  mp3 = new AudioGeneratorMP3();
+
+  out->SetGain(0.16);  // setting the volume.
+
+  // Start playback
+  mp3->begin(file, out);
+}
+
+void loop() {
+  read_values();
+  handle_values();
+
+  // Keep calling loop while playing
+  if (mp3->isRunning()) {
+    if (!mp3->loop())
+      mp3->stop();
+  } else {
+    // Playback has stopped
+  }
+
+  audio.loop();
+}
