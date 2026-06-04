@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name "EasyEDA_Lib")(type "EasyEDA / JLCEDA Pro")(uri "${KIPRJMOD}/EasyEDA_Lib/EasyEDA_Lib.elibz")(options "")(descr ""))
+  (lib (name "EasyEDA_Lib2")(type "EasyEDA / JLCEDA Pro")(uri "${KIPRJMOD}/EasyEDA_Lib2/EasyEDA_Lib2.elibz")(options "")(descr ""))
+)
