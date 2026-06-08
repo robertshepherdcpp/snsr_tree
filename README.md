@@ -2,7 +2,8 @@ snsr_tree
 
 a tree with all the sensors you need to stay healthy!!
 
-<img width="469" height="661" alt="image" src="https://github.com/user-attachments/assets/11c7b84f-e4e5-4819-bd54-8521ee9d7d97" />
+<img width="413" height="588" alt="image" src="https://github.com/user-attachments/assets/8d14f2c0-72db-40d6-b742-b9fe71ca071c" />
+
 
 
 **inspiration for this project**
