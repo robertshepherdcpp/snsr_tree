@@ -23,15 +23,19 @@ a tree with all the sensors you need to stay healthy!!
 
 **screenshots**
 the 3d case:
+
 <img width="604" height="727" alt="image" src="https://github.com/user-attachments/assets/5e178699-db0e-4ed0-b584-fc82eaa0c928" />
 
 the schematic:
+
 <img width="1052" height="667" alt="image" src="https://github.com/user-attachments/assets/5284efcd-0a71-4794-8b01-a1a6073c6a65" />
 
 the pcb wiring:
+
 <img width="762" height="992" alt="image" src="https://github.com/user-attachments/assets/9339fa26-4eca-4ddf-9e34-3add251a383d" />
 
 pcb 3d model:
+
 <img width="589" height="653" alt="image" src="https://github.com/user-attachments/assets/c8002940-372b-4830-a289-6d6207d92df7" />
 
 
