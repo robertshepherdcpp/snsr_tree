@@ -13,13 +13,18 @@ a tree with all the sensors you need to stay healthy!!
 - and i wanted it to be a something cool that sits in my room hence i decided to make it the shape of a tree!
 
 **how to use**
-- first get the pcb and the container printed.
+- first get the pcb and the container printed, and then buy all the parts (the total cost for this project was: $70.33)
 - you have to download the audio files (mp3) from this repository, and then save them onto an sd card (32)
 - then insert the sd card into the holder on the pcb
 - then assemble the case (using screws)
 - plug into a computer and flash the firmware (in this repository) to the xiao-esp32-c6 (easiest way to do this is via the arduino ide)
 - then keep plugged into the computer - as the computer is the project's source of power.
 - then use the project! and listen out for warnings!
+
+**how it works**
+- the snsr_tree will take readings of different levels
+- and based on those levels it will tell you to change these levels or do it for you! (when it is too dark).
+- keeping you safe!
 
 **screenshots**
 the 3d case:
