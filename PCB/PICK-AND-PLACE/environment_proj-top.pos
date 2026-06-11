@@ -1,0 +1,27 @@
+### Footprint positions - created on 2026-06-11T11:41:15+0100 ###
+### Printed by KiCad version 9.0.7
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val                Package                                                   PosX       PosY       Rot  Side
+C1        0.1uF              C_0603_1608Metric_Pad1.08x0.95mm_HandSolder           112.0000   -58.0000    0.0000  top
+D1        LED                LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder         112.0000  -109.0000    0.0000  top
+D2        LED                LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder         109.5000  -122.5000    0.0000  top
+D3        LED                LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder         108.3750  -131.0000    0.0000  top
+D4        LED                LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder         110.8750  -115.5000  180.0000  top
+J1        Micro_SD_Card      microSD_HC_Hirose_DM3AT-SF-PEJM5                      110.8950   -72.3850    0.0000  top
+MK1       ICS-43434          InvenSense_ICS-43434-6_3.5x2.65mm                     130.2625   -40.1400    0.0000  top
+R1        15R                R_0603_1608Metric_Pad0.98x0.95mm_HandSolder           107.0000  -109.0000    0.0000  top
+R2        15R                R_0603_1608Metric_Pad0.98x0.95mm_HandSolder           104.5000  -122.5000    0.0000  top
+R3        15R                R_0603_1608Metric_Pad0.98x0.95mm_HandSolder           103.5000  -131.0000    0.0000  top
+R4        15R                R_0603_1608Metric_Pad0.98x0.95mm_HandSolder           105.5000  -115.5875  180.0000  top
+R5        10K                R_0603_1608Metric_Pad0.98x0.95mm_HandSolder           125.5875  -100.4900    0.0000  top
+R6        A1050              R_LDR_D6.4mm_P3.4mm_Vertical                          101.2250   -59.3500    0.0000  top
+R7        10k                R_0603_1608Metric_Pad0.98x0.95mm_HandSolder           129.0000   -91.5000   90.0000  top
+R8        10K                R_0603_1608Metric_Pad0.98x0.95mm_HandSolder           125.5875  -103.0000    0.0000  top
+R10       8                  R_0603_1608Metric_Pad0.98x0.95mm_HandSolder           129.0000   -87.0000   90.0000  top
+SPK4      ~                  SPK-TH_BD23.0-P10.00-D0.8-L-RD                        133.4250   -72.3500    0.0000  top
+U1        XIAO-ESP32-C6-DIP  XIAO-ESP32-C6-DIP                                     107.0450  -159.8800  -90.0000  top
+U2        ~                  QFN-28_L6.0-W6.0-P0.65-BL-EP3.7                       117.8025   -91.3500   90.0000  top
+U3        SCD40-D-R2         Sensirion_SCD4x-1EP_10.1x10.1mm_P1.25mm_EP4.8x4.8mm   161.6250   -89.1500    0.0000  top
+U4        MAX98357A          TQFN-16-1EP_3x3mm_P0.5mm_EP1.23x1.23mm                119.5625  -118.2500    0.0000  top
+## End
