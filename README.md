@@ -14,6 +14,7 @@ a tree with all the sensors you need to stay healthy!!
 
 **how to use**
 - first get the pcb and the container printed, and then buy all the parts (the total cost for this project was: $70.33)
+- then paint the case green like shown in the 3d renders.
 - you have to download the audio files (mp3) from this repository, and then save them onto an sd card (32)
 - then insert the sd card into the holder on the pcb
 - then assemble the case (using screws)
