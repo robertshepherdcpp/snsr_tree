@@ -6,24 +6,24 @@ a tree with all the sensors you need to stay healthy!!
 
 
 ## inspiration for this project
-- i have always wanted some sensors for my room, however they are expensive and they involve constantly checking the readings
-- so i thought it wold be cool to make my own, where all these sensors are merged into one, and actually tell me to do something if certain levels are too high!!
-- i wanted it to be something cool that sits in my room, hence i decided to make it the shape of a tree!
+- i have always wanted some sensors for my room, however, they are expensive and they involve constantly checking the readings.
+- so i thought it wold be cool to make my own, where all these sensors are merged into one thing. And if certain levels where too high, it would actually tell me to change them!
+- i wanted it to be something that sits in my room, hence i decided to make it the shape of a tree (to blend in with the plants on my desk)!
 
 ## how to use
-- first get the pcb and the container printed, and then buy all the parts (the total cost for this project was: $70.33)
+- first get the pcb and the case printed, and then buy all the parts (these are shown in the BOM - total cost: $70.33)
 - then paint the case green like shown in the 3d renders.
 - you have to download the audio files (mp3) from this repository, and then save them onto an sd card (32)
-- then insert the sd card into the holder on the pcb
-- then assemble the case (using screws)
+- then insert the sd card into the sd card holder on the pcb
+- then assemble the case (using screws going through the pcb aswell)
 - plug into a computer and flash the firmware (in this repository) to the xiao-esp32-c6 (easiest way to do this is via the arduino ide)
 - then keep plugged into the computer - as the computer is the project's source of power.
 - then use the project! and listen out for warnings!
 
-## how it works
-- the snsr_tree will take readings of different levels
-- and based on those levels it will tell you to change these levels or do it for you! (when it is too dark).
-- keeping you safe!
+## what it is / how it works
+- the snsr_tree will take readings of different levels (co2, humidity, temperature, light)
+- and based on those levels it will tell you to change these levels or it can do it for you! (when it is too dark).
+- keeping you alert as to the different levels in your room!
 
 ## screenshots
 the 3d case:
