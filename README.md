@@ -1,7 +1,8 @@
 # snsr_tree
 a tree with all the sensors you need to stay healthy!
  
-<img width="328" height="475" alt="image" src="https://github.com/user-attachments/assets/9ef073f2-db80-4791-a6e0-8c11aea2455d" />
+<img width="407" height="581" alt="image" src="https://github.com/user-attachments/assets/6e94c8d9-afa2-498f-b644-d9a677f2decd" />
+
 
 ## inspiration
 - i have always wanted some sensors for my room, however, they are expensive and involve constantly checking the readings.
