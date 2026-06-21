@@ -1,6 +1,0 @@
-(sym_lib_table
-  (version 7)
-  (lib (name "Seeed_Studio_XIAO_Series")(type "KiCad")(uri "C:/Users/rober/fallout/luna/luna/Library/OPL_Kicad_Library/Seeed Studio XIAO Series Library/Seeed_Studio_XIAO_Series.kicad_sym")(options "")(descr ""))
-  (lib (name "EasyEDA_Lib")(type "EasyEDA (JLCEDA) Pro")(uri "${KIPRJMOD}/EasyEDA_Lib/EasyEDA_Lib.elibz")(options "")(descr ""))
-  (lib (name "EasyEDA_Lib2")(type "EasyEDA (JLCEDA) Pro")(uri "${KIPRJMOD}/EasyEDA_Lib2/EasyEDA_Lib2.elibz")(options "")(descr ""))
-)
