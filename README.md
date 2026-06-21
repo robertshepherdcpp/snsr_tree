@@ -46,7 +46,8 @@ the PCB wiring:
 
 PCB 3D model:
 
-<img width="589" height="653" alt="image" src="https://github.com/user-attachments/assets/c8002940-372b-4830-a289-6d6207d92df7" />
+<img width="527" height="675" alt="image" src="https://github.com/user-attachments/assets/ac46e329-a776-4c61-8039-d5e7ea2e014e" />
+
 
 BOM:
 | Name                      | Price  | Link                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
