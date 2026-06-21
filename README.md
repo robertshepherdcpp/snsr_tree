@@ -36,11 +36,13 @@ the 3D case:
 
 the schematic:
  
-<img width="1052" height="667" alt="image" src="https://github.com/user-attachments/assets/5284efcd-0a71-4794-8b01-a1a6073c6a65" />
+<img width="912" height="607" alt="image" src="https://github.com/user-attachments/assets/a749140a-c289-47c9-9ea3-e2538a38ff68" />
+
 
 the PCB wiring:
  
-<img width="762" height="992" alt="image" src="https://github.com/user-attachments/assets/9339fa26-4eca-4ddf-9e34-3add251a383d" />
+<img width="575" height="710" alt="image" src="https://github.com/user-attachments/assets/379d1f2b-3850-440d-928d-3804e795fce2" />
+
 
 PCB 3D model:
 
