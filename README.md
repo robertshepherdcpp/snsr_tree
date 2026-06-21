@@ -10,7 +10,7 @@ a tree with all the sensors you need to stay healthy!
 - i wanted it to be something that sits in my room, so i decided to make it the shape of a tree (to blend in with the plants on my desk).
 
 ## how to use
-1. get the PCB and case printed, and buy all the parts (listed in the BOM — total cost: $70.33)
+1. get the PCB and case printed, and buy all the parts (listed in the BOM — total cost: $82.23)
 2. paint the case green as shown in the 3D renders
 3. download the audio files (mp3) from this repository and save them onto an SD card (32GB)
 4. insert the SD card into the SD card holder on the PCB
